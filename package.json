@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "express": "^3.21.1",
+    "json-server": "^0.8.14",
     "passport": "^0.2.2",
     "passport-http": "^0.3.0"
   }

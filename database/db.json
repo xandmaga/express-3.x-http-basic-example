@@ -1,0 +1,28 @@
+{
+   "users" :[
+      {
+          "id":1,
+         "GUID":"5347e4d1-7991-4e1d-8c62-cfd9a423e2eb", 
+         "Email":"xandmaga@outlook.com", 
+         "UserName":"xandmaga",
+         "Senha":"xandmaga123",
+         "IsAluno":true,
+         "IsResponsavel":true,
+         "IsProfessor":false,
+         "IsCoordenador":false
+
+      },
+      {
+          "Id":2,
+         "GUID":"5347e4d1-7991-8c62-4e1d-cfd9a423e2eb",  
+         "Email":"rafinha_salomao14@hotmail.com", 
+         "UserName":"raphael",
+         "Senha":"raphael123",
+         "IsAluno":true,
+         "IsResponsavel":true,
+         "IsProfessor":false,
+         "IsCoordenador":false
+      }
+   ]
+}
+

@@ -1,16 +1,14 @@
-var express = require('express');
+//var express = require('express');
 var passport = require('passport');
 var Strategy = require('passport-http').BasicStrategy;
 var db = require('./db');
 var jsonServer = require('json-server');
+var server = jsonServer.create()
+var router = jsonServer.router('database/db.json');
+var middlewares = jsonServer.defaults()
 
-
-//var router = jsonServer.router('db.json')
-
-
-
-
-
+// Set default middlewares (logger, static, cors and no-cache)
+server.use(middlewares)
 
 // Configure the Basic strategy for use by Passport.
 //
@@ -32,24 +30,31 @@ passport.use(new Strategy(
 
 // Create a new Express application.
 //var app = express();
-var server = express();
+//var server = express();
 
 
 // Configure Express application.
-server.use(express.logger());
+//server.use(express.logger());
 
-server.get('/',
+server.use(
   passport.authenticate('basic', { session: false }),
-  function(req, res) {
-    res.json({ username: req.user.username, email: req.user.emails[0].value });
+  function(req, res, next) {
+    if (req.isAuthenticated())
+      next();
+    else
+      res.sendStatus(401);
   });
 
-server.use('/api', jsonServer.router('../../database/db.json'));
+/*server.use(passport.authenticate('basic', { session: false }),
+  function(req, res, next) {
+    if (req.isAuthenticated())
+      next();
+    else
+      res.sendStatus(401);
+  });*/
 
 //configura json-server
-server.get('/api*',
-  passport.authenticate('basic', { session: false }));
-
+server.use(router);
 server.listen(3000, '0.0.0.0', function () {
   console.log('JSON Server is running')
 });
